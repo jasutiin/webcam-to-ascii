@@ -1,4 +1,5 @@
 import cv2
+import add_numbers
 
 
 asci = [' ', '.', "'", ',', ':', ';', 'i', 'l', '!', 'I', '>', '<', '+', '=', 'n', 'u', 'z', 'Z', 'X', '@']
@@ -43,6 +44,8 @@ while rval:
         print("")
             
     key = cv2.waitKey(20)
+    test = add_numbers.add(2, 2)
+    print(test)
     if key == 27: # exit on ESC
         break
 
