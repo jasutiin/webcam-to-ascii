@@ -23,10 +23,23 @@ while rval:
     rval, frame = vc.read()
     bw_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
-    for row in bw_frame:
+    block_size_h = 8
+    block_size_w = 4
+    h, w = bw_frame.shape
+
+    num_row_blocks = h // block_size_h
+    num_col_blocks = w // block_size_w
+    
+		# reshape into 3x3 blocks
+    blocks = bw_frame.reshape(num_row_blocks, block_size_h, num_col_blocks, block_size_w)
+    
+		# take the average of each block and turn it into its own cell
+    averages = blocks.mean(axis=(1, 3))
+    
+    for row in averages:
         for col in row:
-            char = map_num_to_ascii(int(col))
-            print(f"{char}", end="")
+          val = map_num_to_ascii(int(col))
+          print(val, end="")
         print("")
             
     key = cv2.waitKey(20)
