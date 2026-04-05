@@ -30,10 +30,10 @@ while rval:
     num_row_blocks = h // block_size_h
     num_col_blocks = w // block_size_w
     
-		# reshape into 3x3 blocks
+	# reshape into 3x3 blocks
     blocks = bw_frame.reshape(num_row_blocks, block_size_h, num_col_blocks, block_size_w)
     
-		# take the average of each block and turn it into its own cell
+	# take the average of each block and turn it into its own cell
     averages = blocks.mean(axis=(1, 3))
     
     for row in averages:
